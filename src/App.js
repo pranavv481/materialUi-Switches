@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { Container, Switch, Paper, Box, Typography, FormControl, FormControlLabel } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import React, {useState} from "react";
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.grey[200],
+    width: "100vw",
+    height: "100vh",
+    paddingTop: theme.spacing(5)
+  },
+}));
 function App() {
+  const classes = useStyles();
+  const [autoPlay, setAutoplay]= useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className={classes.root}>
+      <Paper component={Box} width="30%" p={4} mx="auto" >
+        <Typography color="secondary" variant="h4" align="center">
+            {autoPlay?"true":"false"}
+        </Typography>
+<FormControl>
+  <FormControlLabel label="autoplay" control={<Switch checked={autoPlay} onChange={(e)=> setAutoplay(e.target.checked)} />}/>
+</FormControl>
+        
+      </Paper>
+    </Container>
   );
 }
 
